@@ -28,5 +28,13 @@ class HomeActivity : AppCompatActivity() {
         usuarioViewModel.isLoading.observe(this, Observer {
             binding.loading.isVisible = it
         })
+        binding.btnGuardar.setOnClickListener() {
+            usuarioViewModel.saveDataUser(
+                binding.tvnombre.text.toString(),
+                binding.tvuser.text.toString(),
+                binding.tvpassword.text.toString(),
+                binding.tvtipo.text.toString()
+            )
+        }
     }
 }
