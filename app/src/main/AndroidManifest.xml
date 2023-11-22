@@ -14,7 +14,19 @@
         android:theme="@style/Theme.MoneyManager"
         tools:targetApi="31">
         <activity
-            android:name=".UI.home.view.HomeActivity"
+            android:name=".UI.settings.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.archivos.ArchivoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.liquidaciones.LiquidacionesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.gastos.GastosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.dashboard.Inicio"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".UI.home.view.HomeActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
