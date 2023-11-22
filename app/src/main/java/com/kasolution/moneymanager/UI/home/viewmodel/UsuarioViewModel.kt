@@ -19,27 +19,32 @@ class UsuarioViewModel @Inject constructor(
     ViewModel() {
 
     val usuarioModel = MutableLiveData<Usuario>()
+    val listaUsuario=MutableLiveData<ArrayList<Usuario>>()
     val isLoading = MutableLiveData<Boolean>()
+
     fun onCreate() {
+        var lista= ArrayList<Usuario>()
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getUsuarioUserCase()
             Log.i("datos", result.toString())
-            if (!result.isNullOrEmpty()) {
+            if (result.isNotEmpty()) {
+                for (i in result){
+                    lista.add(i)
+                }
                 usuarioModel.postValue(result[0])
+                listaUsuario.postValue(lista)
                 isLoading.postValue(false)
-                Log.i("datos", "tiene datos")
+//                Log.i("datos","tamano de lista ${lista.size}")
             }
         }
     }
 
-    fun saveDataUser(Nombre: String, Usuario: String, Password: String, Tipo: String) {
-        val usuario= listOf(Usuario(Nombre,Usuario,Password,Tipo))
+    fun saveDataUser(nombre: String, usuario: String, password: String, tipo: String) {
+        val listausuario= listOf(Usuario(nombre,usuario,password,tipo))
         viewModelScope.launch {
-
-            val result = insertUserUseCase(usuario)
-            Log.i("datos",result.toString())
+            if (insertUserUseCase(listausuario)!=-1)
+            Log.i("datos","Datos registrados correctamente")
         }
-
     }
 }
