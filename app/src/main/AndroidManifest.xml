@@ -23,7 +23,7 @@
             android:name=".UI.liquidaciones.LiquidacionesActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.gastos.GastosActivity"
+            android:name=".UI.gastos.view.GastosActivity"
             android:exported="false" />
         <activity
             android:name=".UI.dashboard.Inicio"

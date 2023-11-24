@@ -10,6 +10,15 @@
     <color name="contrastcolor">#FFFFFF</color>
     <color name="boton">#238636</color>
 
+    //pruebas de color
+    <color name="color1">#0E161B</color>
+    <color name="color2">#121D23</color>
+    <color name="color3">#238636</color>
+    <color name="color4">#238636</color>
+    <color name="color5">#238636</color>
+    <color name="color6">#238636</color>
+
+
     //color de prueba
     <color name="red">#FF0000</color>
 </resources>

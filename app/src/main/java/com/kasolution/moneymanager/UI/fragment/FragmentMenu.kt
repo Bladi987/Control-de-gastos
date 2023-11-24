@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.kasolution.moneymanager.R
 import com.kasolution.moneymanager.UI.archivos.ArchivoActivity
 import com.kasolution.moneymanager.UI.dashboard.adapter.adapterListMenu
-import com.kasolution.moneymanager.UI.gastos.GastosActivity
+import com.kasolution.moneymanager.UI.gastos.view.GastosActivity
 import com.kasolution.moneymanager.UI.liquidaciones.LiquidacionesActivity
 import com.kasolution.moneymanager.UI.settings.SettingsActivity
 import com.kasolution.moneymanager.databinding.FragmentMenuBinding
@@ -84,12 +84,12 @@ class FragmentMenu : Fragment() {
     }
     fun llenarDatosMenu():ArrayList<itemGrid>{
         var arrayList:ArrayList<itemGrid> = ArrayList()
-        arrayList.add(itemGrid(R.drawable.register,"Registros"))
-        arrayList.add(itemGrid(R.drawable.carpeta,"Archivos"))
-        arrayList.add(itemGrid(R.drawable.caja,"Liquidaciones"))
+        arrayList.add(itemGrid(R.drawable.register_icon,"Registros"))
+        arrayList.add(itemGrid(R.drawable.archivo_icon,"Archivos"))
+        arrayList.add(itemGrid(R.drawable.liquidaciones_icon,"Liquidaciones"))
         arrayList.add(itemGrid(R.drawable.sheets_icon,"Opcion2"))
         arrayList.add(itemGrid(R.drawable.sheets_icon,"Opcion3"))
-        arrayList.add(itemGrid(R.drawable.ajustes,"Ajustes"))
+        arrayList.add(itemGrid(R.drawable.settings_icon,"Ajustes"))
 
 
         return arrayList
