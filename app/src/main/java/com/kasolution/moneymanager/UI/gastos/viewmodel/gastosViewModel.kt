@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.kasolution.moneymanager.domain.model.Gastos
 import com.kasolution.moneymanager.domain.usecase.GetGastosUserCase
 import com.kasolution.moneymanager.domain.usecase.InsertGastoUseCase
+import com.kasolution.moneymanager.domain.usecase.getDataPreferencesUseCase
+import com.kasolution.moneymanager.domain.usecase.setDataPreferencesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,7 +16,9 @@ import javax.inject.Inject
 @HiltViewModel
 class gastosViewModel @Inject constructor(
     private val getGastosUserCase: GetGastosUserCase,
-    private val insertGastoUseCase: InsertGastoUseCase
+    private val insertGastoUseCase: InsertGastoUseCase,
+    private val setDataPreferencesUseCase: setDataPreferencesUseCase,
+    private val getDataPreferencesUseCase: getDataPreferencesUseCase
 ) : ViewModel() {
     val listaGastos = MutableLiveData<ArrayList<Gastos>>()
     val isLoading = MutableLiveData<Boolean>()
@@ -68,5 +72,9 @@ class gastosViewModel @Inject constructor(
                 Log.i("datos", "Datos registrados correctamente")
         }
     }
+
+    fun getDataPreferences(key: String) = getDataPreferencesUseCase(key)
+
+    fun setDataPreferences(key: String, value: String) = setDataPreferencesUseCase(key, value)
 
 }

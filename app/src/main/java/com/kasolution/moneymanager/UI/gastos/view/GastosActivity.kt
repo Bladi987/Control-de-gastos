@@ -1,5 +1,7 @@
 package com.kasolution.moneymanager.UI.gastos.view
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -17,6 +19,7 @@ import java.util.ArrayList
 class GastosActivity : AppCompatActivity() {
     private val gastosViewModel: gastosViewModel by viewModels()
     private lateinit var binding: ActivityGastosBinding
+    private lateinit var preferencesValueConexion: SharedPreferences
     private lateinit var lmanager: LinearLayoutManager
     private lateinit var adapter: GastoAdapter
     private lateinit var lista: ArrayList<Gastos>
@@ -24,7 +27,9 @@ class GastosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityGastosBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        preferencesValueConexion = getSharedPreferences("valuesConexion", Context.MODE_PRIVATE)
         lista = ArrayList()
+        recuperarPreferencias()
         Inicializar()
         gastosViewModel.onCreate()
 
@@ -32,6 +37,10 @@ class GastosActivity : AppCompatActivity() {
             lista.addAll(listaGastos)
             adapter.notifyDataSetChanged()
         })
+    }
+
+    private fun recuperarPreferencias() {
+
     }
 
     private fun Inicializar(){
