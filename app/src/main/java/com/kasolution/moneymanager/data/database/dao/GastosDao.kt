@@ -11,6 +11,9 @@ interface GastosDao {
     @Query("SELECT * FROM Gastos")
     suspend fun getGastos():List<GastoEntity>
 
+//    @Query("SELECT * FROM Usuarios")
+//    suspend fun getUser(): List<UsuariosEntity>
+
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertarGasto(gasto:List<GastoEntity>)
 }

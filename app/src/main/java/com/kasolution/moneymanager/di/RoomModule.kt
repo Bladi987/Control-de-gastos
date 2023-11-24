@@ -21,4 +21,8 @@ object RoomModule {
     @Singleton
     @Provides
     fun providerUsuarioDao(db:BDGastos)=db.getUsuarioDao()
+
+    @Singleton
+    @Provides
+    fun providerGastosDao(db:BDGastos)=db.getGastosDao()
 }

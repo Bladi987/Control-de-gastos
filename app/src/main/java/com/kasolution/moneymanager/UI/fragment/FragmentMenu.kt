@@ -16,7 +16,7 @@ import com.kasolution.moneymanager.UI.gastos.view.GastosActivity
 import com.kasolution.moneymanager.UI.liquidaciones.LiquidacionesActivity
 import com.kasolution.moneymanager.UI.settings.SettingsActivity
 import com.kasolution.moneymanager.databinding.FragmentMenuBinding
-import com.kasolution.moneymanager.domain.model.itemGrid
+import com.kasolution.moneymanager.UI.pojos.itemGrid
 
 class FragmentMenu : Fragment() {
     private lateinit var binding: FragmentMenuBinding

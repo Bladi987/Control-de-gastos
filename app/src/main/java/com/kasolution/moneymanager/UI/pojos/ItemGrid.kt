@@ -1,4 +1,4 @@
-package com.kasolution.moneymanager.domain.model
+package com.kasolution.moneymanager.UI.pojos
 
 class itemGrid {
     var icon:Int?=0

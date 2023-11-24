@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kasolution.moneymanager.R
 import com.kasolution.moneymanager.databinding.ItemGridBinding
-import com.kasolution.moneymanager.domain.model.itemGrid
+import com.kasolution.moneymanager.UI.pojos.itemGrid
 
 class adapterListMenu(
     private val listaRecibida: ArrayList<itemGrid>,
