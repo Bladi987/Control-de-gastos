@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.kasolution.moneymanager.R
-import com.kasolution.moneymanager.UI.pojos.itemGastos
 import com.kasolution.moneymanager.databinding.ItemGastosBinding
+import com.kasolution.moneymanager.domain.model.Gastos
 
-class adapterGasto(
-    private val arrayList: ArrayList<itemGastos>,
-    private val onclickListener: (itemGastos) -> Unit,
-    private val OnClickUpdate: (itemGastos,Int) -> Unit,
-    private val OnClickDelete: (itemGastos,Int) -> Unit
-) : RecyclerView.Adapter<adapterGasto.viewHolder>() {
+class GastoAdapter(
+    private val listaRecibida: ArrayList<Gastos>,
+    private val OnClickListener: (Gastos) -> Unit,
+    private val OnClickUpdate: (Gastos,Int) -> Unit,
+    private val OnClickDelete: (Gastos,Int) -> Unit
+) : RecyclerView.Adapter<GastoAdapter.viewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
         val layoutInflater =
@@ -24,24 +24,24 @@ class adapterGasto(
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
-        val item = arrayList[position]
-        holder.render(item, onclickListener,OnClickUpdate,OnClickDelete)
+        val item = listaRecibida[position]
+        holder.render(item, OnClickListener,OnClickUpdate,OnClickDelete)
     }
 
     override fun getItemCount(): Int {
-        return arrayList.size
+        return listaRecibida.size
     }
 
     //zona del viewHolder dentro de la misma clase
     inner class viewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemGastosBinding.bind(view)
-        fun render(lista: itemGastos,
-                   onclickListener: (itemGastos) -> Unit,
-                   OnClickUpdate: (itemGastos,Int) -> Unit,
-                   OnClickDelete: (itemGastos,Int) -> Unit) {
+        fun render(lista: Gastos,
+                   onclickListener: (Gastos) -> Unit,
+                   OnClickUpdate: (Gastos,Int) -> Unit,
+                   OnClickDelete: (Gastos,Int) -> Unit) {
 
-            binding.lblid.text = lista.id
-            binding.lblfecha.text = lista.fecha
+            binding.lblid.text = lista.id.toString()
+            binding.lblfecha.text = lista.fechaRegistro
             binding.lblciudad.text = lista.ciudad
             binding.lbltipoDoc.text = lista.tipoDoc
             binding.lblNroDoc.text = lista.nroDoc

@@ -2,17 +2,60 @@ package com.kasolution.moneymanager.UI.gastos.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.kasolution.moneymanager.R
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.kasolution.moneymanager.UI.gastos.adapter.GastoAdapter
+import com.kasolution.moneymanager.UI.gastos.viewmodel.gastosViewModel
+import com.kasolution.moneymanager.UI.pojos.itemGastos
 import com.kasolution.moneymanager.databinding.ActivityGastosBinding
+import com.kasolution.moneymanager.domain.model.Gastos
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.ArrayList
 
 @AndroidEntryPoint
 class GastosActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityGastosBinding
+    private val gastosViewModel: gastosViewModel by viewModels()
+    private lateinit var binding: ActivityGastosBinding
+    private lateinit var lmanager: LinearLayoutManager
+    private lateinit var adapter: GastoAdapter
+    private lateinit var lista: ArrayList<Gastos>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityGastosBinding.inflate(layoutInflater)
+        binding = ActivityGastosBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        lista = ArrayList()
+        Inicializar()
+        gastosViewModel.onCreate()
 
+        gastosViewModel.listaGastos.observe(this, Observer { listaGastos->
+            lista.addAll(listaGastos)
+            adapter.notifyDataSetChanged()
+        })
     }
+
+    private fun Inicializar(){
+        lmanager = LinearLayoutManager(this)
+        adapter = GastoAdapter(
+            listaRecibida = lista,
+            OnClickListener = { itemGastos -> onItemDefault(itemGastos) },
+            OnClickUpdate = { itemGastos, position -> onItemUpdate(itemGastos, position) },
+            OnClickDelete = { id, position -> onDeleteItem(id, position) })
+        binding.RVRegistros.layoutManager = lmanager
+        binding.RVRegistros.adapter = adapter
+    }
+
+    private fun onDeleteItem(id: Gastos, position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    private fun onItemUpdate(itemGastos: Gastos, position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    private fun onItemDefault(itemGastos: Gastos) {
+        TODO("Not yet implemented")
+    }
+
+
 }

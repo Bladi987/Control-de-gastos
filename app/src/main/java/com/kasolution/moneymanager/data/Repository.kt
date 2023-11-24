@@ -1,5 +1,6 @@
 package com.kasolution.moneymanager.data
 
+import android.content.SharedPreferences
 import com.kasolution.moneymanager.data.database.dao.GastosDao
 import com.kasolution.moneymanager.data.database.dao.UsuariosDao
 import com.kasolution.moneymanager.data.database.entities.GastoEntity
@@ -11,8 +12,10 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(
     private val UsuarioDao: UsuariosDao,
-    private val GastosDao: GastosDao
+    private val GastosDao: GastosDao,
+    private val sharedPreferences: SharedPreferences
 ) {
+    //TODO este zona es de gestion de datos de room
     suspend fun getAllUsuariosFromDatabase(): List<Usuario> {
         val response = UsuarioDao.getUser()
         return response.map { it.toDomain() }
@@ -29,5 +32,15 @@ class Repository @Inject constructor(
     }
     suspend fun insertGasto(Gasto: List<GastoEntity>) {
         GastosDao.insertarGasto(Gasto)
+    }
+
+    //TODO esta zona es de gestion de datos de sharedPreference
+
+    fun saveData(key: String, value: String) {
+        sharedPreferences.edit().putString(key, value).apply()
+    }
+
+    fun getData(key: String, defaultValue: String): String {
+        return sharedPreferences.getString(key, defaultValue) ?: defaultValue
     }
 }
