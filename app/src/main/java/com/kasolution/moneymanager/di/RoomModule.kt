@@ -1,6 +1,7 @@
 package com.kasolution.moneymanager.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.kasolution.moneymanager.data.database.BDGastos
 import dagger.Module
@@ -20,9 +21,15 @@ object RoomModule {
 
     @Singleton
     @Provides
-    fun providerUsuarioDao(db:BDGastos)=db.getUsuarioDao()
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("valuesConexion", Context.MODE_PRIVATE)
+    }
 
     @Singleton
     @Provides
-    fun providerGastosDao(db:BDGastos)=db.getGastosDao()
+    fun providerUsuarioDao(db: BDGastos) = db.getUsuarioDao()
+
+    @Singleton
+    @Provides
+    fun providerGastosDao(db: BDGastos) = db.getGastosDao()
 }

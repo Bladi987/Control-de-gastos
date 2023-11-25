@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +38,12 @@ class GastosActivity : AppCompatActivity() {
             lista.addAll(listaGastos)
             adapter.notifyDataSetChanged()
         })
+
+        binding.btnAdd.setOnClickListener(){
+//            gastosViewModel.setDataPreferences("valor1","Hola mundo")
+            val preferences=gastosViewModel.getDataPreferences("valor1")
+            Toast.makeText(this,preferences,Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun recuperarPreferencias() {
