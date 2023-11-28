@@ -3,7 +3,7 @@ package com.kasolution.moneymanager.UI.dashboard
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kasolution.moneymanager.R
-import com.kasolution.moneymanager.UI.fragment.FragmentMenu
+import com.kasolution.moneymanager.UI.dashboard.fragment.FragmentMenu
 import com.kasolution.moneymanager.databinding.ActivityInicioBinding
 
 class Inicio : AppCompatActivity() {

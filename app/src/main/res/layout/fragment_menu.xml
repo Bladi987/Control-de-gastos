@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.fragment.FragmentMenu">
+    tools:context=".UI.dashboard.fragment.FragmentMenu">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMenu"

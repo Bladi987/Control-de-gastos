@@ -1,4 +1,4 @@
-package com.kasolution.moneymanager.UI.home.view
+package com.kasolution.moneymanager.UI.Usuarios.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,9 +8,10 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kasolution.moneymanager.UI.home.adapter.userAdapter
-import com.kasolution.moneymanager.UI.home.viewmodel.UsuarioViewModel
-import com.kasolution.moneymanager.databinding.ActivityHomeBinding
+import com.kasolution.moneymanager.UI.Usuarios.adapter.userAdapter
+import com.kasolution.moneymanager.UI.Usuarios.viewmodel.UsuarioViewModel
+import com.kasolution.moneymanager.databinding.ActivityUsuariosBinding
+
 import com.kasolution.moneymanager.domain.model.Usuario
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.ArrayList
@@ -18,13 +19,13 @@ import java.util.ArrayList
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private val usuarioViewModel: UsuarioViewModel by viewModels()
-    private lateinit var binding: ActivityHomeBinding
+    private lateinit var binding: ActivityUsuariosBinding
     private lateinit var lmanager: LinearLayoutManager
     private lateinit var adapter: userAdapter
     private lateinit var lista: ArrayList<Usuario>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityUsuariosBinding.inflate(layoutInflater)
         setContentView(binding.root)
         lista = ArrayList()
 

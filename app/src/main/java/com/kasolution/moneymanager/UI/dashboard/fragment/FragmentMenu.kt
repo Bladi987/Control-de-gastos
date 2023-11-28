@@ -1,4 +1,4 @@
-package com.kasolution.moneymanager.UI.fragment
+package com.kasolution.moneymanager.UI.dashboard.fragment
 
 import android.content.Intent
 import android.os.Bundle

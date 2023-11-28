@@ -1,4 +1,4 @@
-package com.kasolution.moneymanager.UI.home.adapter
+package com.kasolution.moneymanager.UI.Usuarios.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
