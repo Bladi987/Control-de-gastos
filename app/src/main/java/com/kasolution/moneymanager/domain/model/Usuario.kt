@@ -9,5 +9,4 @@ data class Usuario(
     val password: String,
     val tipo: String
 )
-//fun QuoteModel.toDomain() = Quote(quote, author)
 fun UsuariosEntity.toDomain()=Usuario(nombre, user, password, tipo)

@@ -84,12 +84,12 @@ class FragmentMenu : Fragment() {
     }
     fun llenarDatosMenu():ArrayList<itemGrid>{
         var arrayList:ArrayList<itemGrid> = ArrayList()
-        arrayList.add(itemGrid(R.drawable.register_icon,"Registros"))
-        arrayList.add(itemGrid(R.drawable.archivo_icon,"Archivos"))
-        arrayList.add(itemGrid(R.drawable.liquidaciones_icon,"Liquidaciones"))
+        arrayList.add(itemGrid(R.drawable.register,"Registros"))
+        arrayList.add(itemGrid(R.drawable.carpeta,"Archivos"))
+        arrayList.add(itemGrid(R.drawable.caja,"Liquidaciones"))
         arrayList.add(itemGrid(R.drawable.sheets_icon,"Opcion2"))
         arrayList.add(itemGrid(R.drawable.sheets_icon,"Opcion3"))
-        arrayList.add(itemGrid(R.drawable.settings_icon,"Ajustes"))
+        arrayList.add(itemGrid(R.drawable.ajustes,"Ajustes"))
 
 
         return arrayList

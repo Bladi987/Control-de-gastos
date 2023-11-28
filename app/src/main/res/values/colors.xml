@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
 
     //customColorsAPP
     <color name="primarycolor">#111B21</color>
@@ -11,6 +11,18 @@
     <color name="boton">#238636</color>
 
     //pruebas de color
+    <color name="color_azul">#303D81</color>
+    <color name="color_celeste">#44A1F1</color>
+    <color name="color_naranja">#FFB13E</color>
+    <color name="color_morado">#9B77E9</color>
+    <color name="color_rosado_oscuro">#F17370</color>
+    <color name="color_rosado">#FF67A6</color>
+    <color name="darker_grey">#F6F6F6</color>
+
+
+
+
+
     <color name="color1">#0E161B</color>
     <color name="color2">#121D23</color>
     <color name="color3">#238636</color>
