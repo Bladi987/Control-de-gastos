@@ -14,5 +14,5 @@ data class RegistrosEntity(
     @ColumnInfo(name = "idArchivo") val idArchivo: String
 )
 
-fun Registros.toDataBase() =
+fun Registros.toDatabase() =
     RegistrosEntity(id = id, Nombre = Nombre, Estado = Estado, idArchivo = idArchivo)

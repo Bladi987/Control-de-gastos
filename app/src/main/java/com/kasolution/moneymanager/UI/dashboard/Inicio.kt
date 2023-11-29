@@ -5,7 +5,9 @@ import android.os.Bundle
 import com.kasolution.moneymanager.R
 import com.kasolution.moneymanager.UI.dashboard.fragment.FragmentMenu
 import com.kasolution.moneymanager.databinding.ActivityInicioBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class Inicio : AppCompatActivity() {
     private lateinit var binding:ActivityInicioBinding
     override fun onCreate(savedInstanceState: Bundle?) {
