@@ -1,0 +1,18 @@
+package com.kasolution.moneymanager.domain.usecase
+
+import com.kasolution.moneymanager.data.Repository
+import com.kasolution.moneymanager.data.database.entities.ArchivosEntity
+import com.kasolution.moneymanager.data.database.entities.toDatabase
+import com.kasolution.moneymanager.domain.model.Archivos
+import javax.inject.Inject
+
+class updateArchivoUseCase @Inject constructor(private val repository: Repository) {
+    suspend operator fun invoke(archivo: List<Archivos>):Int{
+        return try {
+            repository.updateArchivo(archivo.map { it.toDatabase() })
+            1
+        }catch (e:Exception){
+            -1
+        }
+    }
+}

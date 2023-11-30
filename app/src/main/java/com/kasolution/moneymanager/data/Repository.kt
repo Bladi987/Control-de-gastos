@@ -52,6 +52,12 @@ class Repository @Inject constructor(
     suspend fun insertArchivo(archivo: List<ArchivosEntity>) {
         ArchivoDao.insertarArchivos(archivo)
     }
+    suspend fun updateArchivo(archivo:List<ArchivosEntity>){
+        ArchivoDao.actualizarArchivo(archivo)
+    }
+    suspend fun deleteArchivo(idArchivo: Int){
+        ArchivoDao.eleminarArchivo(idArchivo)
+    }
 
     //implementacion de Registros
     suspend fun getAllRegistrosFromDataBase():List<Registros>{

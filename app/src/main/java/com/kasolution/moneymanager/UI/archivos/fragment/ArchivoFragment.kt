@@ -57,7 +57,7 @@ class ArchivoFragment : Fragment() {
         glmanager = GridLayoutManager(context, columns)
         adapter = ArchivoAdapter(
             listaRecibida = lista,
-            OnClickListener = { itemArchivo -> onItemDefault(itemArchivo) },
+            OnClickListener = { itemArchivo -> onItemSelected(itemArchivo) },
             OnClickUpdate = { itemArchivo, position -> onItemUpdate(itemArchivo, position) },
             OnClickDelete = { id, position -> onDeleteItem(id, position) })
         binding.rvListaArchivos.layoutManager = glmanager
@@ -65,19 +65,21 @@ class ArchivoFragment : Fragment() {
     }
 
     private fun onDeleteItem(id: Int, position: Int) {
-        TODO("Not yet implemented")
+        archivosViewModel.deleteArchivo(id)
+        lista.removeAt(position)
+        adapter.notifyItemRemoved(position)
     }
 
     private fun onItemUpdate(itemArchivo: Archivos, position: Int) {
-        TODO("Not yet implemented")
+        dialogFile(itemArchivo, position)
     }
 
-    private fun onItemDefault(itemArchivo: Archivos) {
-        TODO("Not yet implemented")
+    private fun onItemSelected(itemArchivo: Archivos) {
+
     }
 
     private fun dialogFile(
-        itemFileR: itemArchivo = itemArchivo(0, "", "", false),
+        itemFileR: Archivos = Archivos(0, "", "", false),
         position: Int = -1
     ) {
         var anim1 = AnimationUtils.loadAnimation(context, R.anim.bounce3)
@@ -87,9 +89,9 @@ class ArchivoFragment : Fragment() {
         val txtnombre = view.findViewById<EditText>(R.id.etNombre)
         val txtDescripcion = view.findViewById<EditText>(R.id.etDescripcion)
         if (position != -1) {
-            txtnombre.setText(itemFileR.nombre)
+            txtnombre.setText(itemFileR.Nombre)
 
-            txtDescripcion.setText(itemFileR.descripcion)
+            txtDescripcion.setText(itemFileR.Descripcion)
         }
 
         val builder = AlertDialog.Builder(requireContext())
@@ -109,9 +111,12 @@ class ArchivoFragment : Fragment() {
             } else {
 
                 if (position == -1) {
-                    //insertamos un registro nuevo
-                    archivosViewModel.insertArchivo(txtnombre.text.toString(),txtDescripcion.text.toString())
-
+                    //insertamos un registro nuevo en room
+                    archivosViewModel.insertArchivo(
+                        txtnombre.text.toString(),
+                        txtDescripcion.text.toString()
+                    )
+                    // agregamos un registro a la lista del recyclerView
                     lista.add(
                         Archivos(
                             id.toInt(),
@@ -126,25 +131,21 @@ class ArchivoFragment : Fragment() {
                     adapter.notifyItemInserted(lista.size - 1)
                     glmanager.scrollToPositionWithOffset(lista.size - 1, 10)
                 } else {
-//                    val response = manager.modificarArchivo(
-//                        itemFileR.id.toString(),
-//                        txtnombre.text.toString(),
-//                        txtDescripcion.text.toString()
-//                    )
-//                    if (response == 1) {
-//                        listFile[position] = itemArchivo(
-//                            itemFileR.id,
-//                            txtnombre.text.toString(),
-//                            txtDescripcion.text.toString(),
-//                            false
-//                        )
-//                        adapterFile.notifyItemChanged(position)
-//                        Toast.makeText(
-//                            context,
-//                            "Datos modificados correstamente",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
+                    //modificar el registro en room
+                    archivosViewModel.updateArchivo(
+                        itemFileR.id,
+                        txtnombre.text.toString(),
+                        txtDescripcion.text.toString()
+                    )
+                    //actualizar la lista en el recyclerView
+                    lista[position] = Archivos(
+                        itemFileR.id,
+                        txtnombre.text.toString(),
+                        txtDescripcion.text.toString(),
+                        itemFileR.selected
+                    )
+                    adapter.notifyItemChanged(position)
+
                 }
 
                 dialog.dismiss()
