@@ -5,7 +5,7 @@
     android:id="@+id/viewprincipal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Usuarios.view.HomeActivity">
+    tools:context=".UI.Usuarios.view.UsuariosActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvListaUsuario"

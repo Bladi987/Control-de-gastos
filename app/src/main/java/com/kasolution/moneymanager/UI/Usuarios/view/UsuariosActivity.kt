@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.ArrayList
 
 @AndroidEntryPoint
-class HomeActivity : AppCompatActivity() {
+class UsuariosActivity : AppCompatActivity() {
     private val usuarioViewModel: UsuarioViewModel by viewModels()
     private lateinit var binding: ActivityUsuariosBinding
     private lateinit var lmanager: LinearLayoutManager

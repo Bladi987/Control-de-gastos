@@ -6,9 +6,9 @@ import com.kasolution.moneymanager.domain.model.Archivos
 import javax.inject.Inject
 
 class InsertArchivoUseCase @Inject constructor(private val repository: Repository) {
-    suspend operator fun invoke(Archivo: List<Archivos>): Int {
+    suspend operator fun invoke(archivo: List<Archivos>): Int {
         return try {
-            repository.insertArchivo(Archivo.map { it.toDatabase() })
+            repository.insertArchivo(archivo.map { it.toDatabase() })
             1
         } catch (e: Exception) {
             -1

@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.kasolution.moneymanager.R
-import com.kasolution.moneymanager.UI.pojos.itemArchivo
 import com.kasolution.moneymanager.databinding.ItemArchivosBinding
+import com.kasolution.moneymanager.domain.model.Archivos
 
 class ArchivoAdapter(
-    private val listaRecibida: ArrayList<itemArchivo>,
-    private val OnClickListener: (itemArchivo) -> Unit,
-    private val OnClickUpdate: (itemArchivo, Int) -> Unit,
+    private val listaRecibida: ArrayList<Archivos>,
+    private val OnClickListener: (Archivos) -> Unit,
+    private val OnClickUpdate: (Archivos, Int) -> Unit,
     private val OnClickDelete: (Int, Int) -> Unit
 ) : RecyclerView.Adapter<ArchivoAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArchivoAdapter.ViewHolder {
@@ -37,13 +37,13 @@ class ArchivoAdapter(
 
         fun render(
 
-            lista:itemArchivo,
-            OnClickListener: (itemArchivo) -> Unit,
-            OnClickUpdate: (itemArchivo, Int) -> Unit,
+            lista:Archivos,
+            OnClickListener: (Archivos) -> Unit,
+            OnClickUpdate: (Archivos, Int) -> Unit,
             OnClickDelete: (Int, Int) -> Unit
         ) {
             itemView.setOnClickListener { OnClickListener(lista) }
-            binding.lblNombre.text = lista.nombre
+            binding.lblNombre.text = lista.Nombre
             if (lista.selected == true) {
                 binding.imgselected.setImageResource(R.drawable.ic_predeterminado)
             } else binding.imgselected.setImageResource(0)
@@ -62,11 +62,11 @@ class ArchivoAdapter(
                                 )
                             val editor = preferencesValueConexion.edit()
                             editor.apply() {
-                                putString("ARCHIVO_SELECTED", lista.nombre)
+                                putString("ARCHIVO_SELECTED", lista.Nombre)
                             }.apply()
                             for (i in 0 until listaRecibida.size) {
                                 listaRecibida[i].selected = false
-                                if (listaRecibida[i].nombre == lista.nombre) lista.selected = true
+                                if (listaRecibida[i].Nombre == lista.Nombre) lista.selected = true
                             }
                             notifyDataSetChanged()
                             true

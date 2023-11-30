@@ -11,11 +11,13 @@ data class ArchivosEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val id: Int = 0,
     @ColumnInfo(name = "Nombre") val Nombre: String,
-    @ColumnInfo(name = "Descripcion") val Descripcion: String
+    @ColumnInfo(name = "Descripcion") val Descripcion: String,
+    @ColumnInfo(name = "selected") val selected: Boolean
 )
 
 fun Archivos.toDatabase() = ArchivosEntity(
     id = id,
     Nombre = Nombre,
-    Descripcion = Descripcion
+    Descripcion = Descripcion,
+    selected = selected
 )

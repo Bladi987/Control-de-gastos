@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class GetArchivoUseCase @Inject constructor(private val repository: Repository) {
     suspend operator fun invoke(): List<Archivos> {
-        val archivo = repository.getAllUsuariosFromDatabase()
+        val archivo = repository.getAllArchivoFromDataBase()
 
         return if (archivo.isNullOrEmpty()) {
             emptyList()

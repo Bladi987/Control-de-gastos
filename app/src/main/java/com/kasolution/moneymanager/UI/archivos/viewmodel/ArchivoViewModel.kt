@@ -25,7 +25,7 @@ class ArchivoViewModel @Inject constructor(
     val listaRegistro=MutableLiveData<ArrayList<Registros>>()
     val isLoading = MutableLiveData<Boolean>()
 
-    fun onCreateArchivo() {
+    fun ListarArchivo() {
         var lista= ArrayList<Archivos>()
         viewModelScope.launch {
             isLoading.postValue(true)
@@ -40,7 +40,7 @@ class ArchivoViewModel @Inject constructor(
             }
         }
     }
-    fun onCreateRegistro(){
+    fun ListarRegistro(){
         var lista= ArrayList<Registros>()
         viewModelScope.launch {
             isLoading.postValue(true)
@@ -56,7 +56,7 @@ class ArchivoViewModel @Inject constructor(
         }
     }
     fun insertArchivo(nombre: String, descripcion: String) {
-        val listaArchivo= listOf(Archivos(0,nombre,descripcion))
+        val listaArchivo= listOf(Archivos(0,nombre,descripcion,false))
         viewModelScope.launch {
             if (insertArchivoUseCase(listaArchivo)!=-1)
                 Log.i("datos","Datos registrados correctamente")

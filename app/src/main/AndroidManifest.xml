@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.Usuarios.view.HomeActivity"
+            android:name=".UI.Usuarios.view.UsuariosActivity"
             android:exported="false" />
     </application>
 
