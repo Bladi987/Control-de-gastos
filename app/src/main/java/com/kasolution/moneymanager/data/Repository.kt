@@ -19,10 +19,16 @@ import javax.inject.Inject
 class Repository @Inject constructor(
     private val UsuarioDao: UsuariosDao,
     private val GastosDao: GastosDao,
-    private val ArchivoDao:ArchivosDao,
-    private val RegistroDao:RegistrosDao,
+    private val ArchivoDao: ArchivosDao,
+    private val RegistroDao: RegistrosDao,
     private val sharedPreferences: SharedPreferences
 ) {
+    //TODO esta zona de utilidades
+    suspend fun selecteditemFromDatabase() {
+        ArchivoDao.itemSelected()
+        RegistroDao.itemSelected()
+    }
+
     //TODO este zona es de gestion de datos de room
     //implementacion de usuarios
     suspend fun getAllUsuariosFromDatabase(): List<Usuario> {
@@ -45,27 +51,39 @@ class Repository @Inject constructor(
     }
 
     //implementacion de Archivos
-    suspend fun getAllArchivoFromDataBase():List<Archivos>{
-        val response=ArchivoDao.getArchivos()
+    suspend fun getAllArchivoFromDataBase(): List<Archivos> {
+        val response = ArchivoDao.getArchivos()
         return response.map { it.toDomain() }
     }
+
     suspend fun insertArchivo(archivo: List<ArchivosEntity>) {
         ArchivoDao.insertarArchivos(archivo)
     }
-    suspend fun updateArchivo(archivo:List<ArchivosEntity>){
+
+    suspend fun updateArchivo(archivo: List<ArchivosEntity>) {
         ArchivoDao.actualizarArchivo(archivo)
     }
-    suspend fun deleteArchivo(idArchivo: Int){
+
+    suspend fun deleteArchivo(idArchivo: Int) {
         ArchivoDao.eleminarArchivo(idArchivo)
     }
 
     //implementacion de Registros
-    suspend fun getAllRegistrosFromDataBase():List<Registros>{
-        val response=RegistroDao.getRegistros()
+    suspend fun getAllRegistrosFromDataBase(archivoId: Int): List<Registros> {
+        val response = RegistroDao.getRegistros(archivoId)
         return response.map { it.toDomain() }
     }
+
     suspend fun insertRegistro(registros: List<RegistrosEntity>) {
         RegistroDao.insertarRegistro(registros)
+    }
+
+    suspend fun updateRegistro(registro: List<RegistrosEntity>) {
+        RegistroDao.actualizarRegistro(registro)
+    }
+
+    suspend fun deleteRegistro(idRegistro: Int) {
+        RegistroDao.eleminarRegistro(idRegistro)
     }
 
     //TODO esta zona es de gestion de datos de sharedPreference

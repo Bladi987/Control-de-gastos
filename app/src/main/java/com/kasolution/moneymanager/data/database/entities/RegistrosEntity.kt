@@ -11,8 +11,15 @@ data class RegistrosEntity(
     @ColumnInfo(name = "id") val id: Int = 0,
     @ColumnInfo(name = "Nombre") val Nombre: String,
     @ColumnInfo(name = "Estado") val Estado: String,
-    @ColumnInfo(name = "idArchivo") val idArchivo: String
+    @ColumnInfo(name = "idArchivo") val idArchivo: String,
+    @ColumnInfo(name = "selected") val selected: Boolean
 )
 
 fun Registros.toDatabase() =
-    RegistrosEntity(id = id, Nombre = Nombre, Estado = Estado, idArchivo = idArchivo)
+    RegistrosEntity(
+        id = id,
+        Nombre = Nombre,
+        Estado = Estado,
+        idArchivo = idArchivo,
+        selected = selected
+    )

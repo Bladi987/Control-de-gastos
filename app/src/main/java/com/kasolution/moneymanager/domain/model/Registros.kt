@@ -7,6 +7,7 @@ data class Registros(
     val id: Int = 0,
     val Nombre: String,
     val Estado: String,
-    val idArchivo: String
+    val idArchivo: String,
+    var selected:Boolean
 )
-fun RegistrosEntity.toDomain()=Registros(id,Nombre,Estado,idArchivo)
+fun RegistrosEntity.toDomain()=Registros(id,Nombre,Estado,idArchivo, selected)

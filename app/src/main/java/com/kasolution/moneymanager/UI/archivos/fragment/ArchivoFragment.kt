@@ -25,12 +25,11 @@ import com.kasolution.moneymanager.domain.model.Archivos
 import com.kasolution.moneymanager.domain.model.Usuario
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.ArrayList
-
 @AndroidEntryPoint
 class ArchivoFragment : Fragment() {
     private var _binding: FragmentArchivoBinding? = null
     private val binding get() = _binding!!
-    val archivosViewModel: ArchivoViewModel by viewModels()
+    private val archivosViewModel: ArchivoViewModel by viewModels()
     private lateinit var glmanager: GridLayoutManager
     private lateinit var adapter: ArchivoAdapter
     private lateinit var lista: ArrayList<Archivos>
@@ -75,7 +74,22 @@ class ArchivoFragment : Fragment() {
     }
 
     private fun onItemSelected(itemArchivo: Archivos) {
+//        Log.i("BladiDev",itemArchivo.id.toString())
 
+
+        val fragmentDetails = ArchivoDetalleFragment()
+        val args = Bundle().apply {
+            putInt(ArchivoDetalleFragment.ARG_ARCHIVO_ID, itemArchivo.id)
+        }
+        fragmentDetails.arguments = args
+
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fcontainer, fragmentDetails)
+        fragmentTransaction.addToBackStack(null) // Para agregar el fragmento a la pila de retroceso
+        fragmentTransaction.commit()
+
+//        archivosViewModel.setSelectedArchivoId(itemArchivo.id)
     }
 
     private fun dialogFile(
@@ -90,7 +104,6 @@ class ArchivoFragment : Fragment() {
         val txtDescripcion = view.findViewById<EditText>(R.id.etDescripcion)
         if (position != -1) {
             txtnombre.setText(itemFileR.Nombre)
-
             txtDescripcion.setText(itemFileR.Descripcion)
         }
 
@@ -156,6 +169,8 @@ class ArchivoFragment : Fragment() {
             dialog.dismiss()
         }
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
