@@ -4,8 +4,11 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kasolution.moneymanager.UI.pojos.itemRegistro
 import com.kasolution.moneymanager.domain.model.Gastos
+import com.kasolution.moneymanager.domain.model.Registros
 import com.kasolution.moneymanager.domain.usecase.GetGastosUserCase
+import com.kasolution.moneymanager.domain.usecase.GetRegistroUseCase
 import com.kasolution.moneymanager.domain.usecase.InsertGastoUseCase
 import com.kasolution.moneymanager.domain.usecase.getDataPreferencesUseCase
 import com.kasolution.moneymanager.domain.usecase.setDataPreferencesUseCase
@@ -18,9 +21,11 @@ class gastosViewModel @Inject constructor(
     private val getGastosUserCase: GetGastosUserCase,
     private val insertGastoUseCase: InsertGastoUseCase,
     private val setDataPreferencesUseCase: setDataPreferencesUseCase,
-    private val getDataPreferencesUseCase: getDataPreferencesUseCase
+    private val getDataPreferencesUseCase: getDataPreferencesUseCase,
+    private val getRegistroUseCase: GetRegistroUseCase
 ) : ViewModel() {
     val listaGastos = MutableLiveData<ArrayList<Gastos>>()
+    val listaRegistros = MutableLiveData<ArrayList<Registros>>()
     val isLoading = MutableLiveData<Boolean>()
     fun onCreate() {
         var lista = ArrayList<Gastos>()
@@ -34,6 +39,19 @@ class gastosViewModel @Inject constructor(
                 }
                 listaGastos.postValue(lista)
                 isLoading.postValue(false)
+            }
+        }
+    }
+    fun LoadRegister() {
+        var lista=ArrayList<Registros>()
+        viewModelScope.launch {
+            val result=getRegistroUseCase(1)
+            Log.i("BladiDev", result.toString())
+            if (result.isNotEmpty()){
+                for (i in result){
+                    lista.add(i)
+                }
+                listaRegistros.postValue(lista)
             }
         }
     }
